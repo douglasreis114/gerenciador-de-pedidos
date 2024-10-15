@@ -1,48 +1,42 @@
-package com.atividade5.demo.controller;
+package com.atividade5.demo.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
-import com.atividade5.demo.model.Pedido;
-import com.atividade5.demo.model.StatusEnum;
-import com.atividade5.demo.repository.PedidoRepository;
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
 
-import java.util.List;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private String descricao;
 
-@Controller
-@RequestMapping("/pedidos")
-public class PedidoController {
+    private LocalDateTime data;
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 
-    @GetMapping("/listar")
-    public String listarTodos(Model model) {
-        List<Pedido> pedidos = pedidoRepository.findAll();
-        model.addAttribute("pedidos", pedidos);
-        return "pedido-list"; 
+    public Pedido() {}
+
+    public Pedido(String descricao, LocalDateTime data, StatusEnum status) {
+        this.descricao = descricao;
+        this.data = data;
+        this.status = status;
     }
 
-    @GetMapping("/criar")
-    public String mostrarFormCriar() {
-        return "pedido-cadastrar"; 
+    public Long getId() {
+        return id;
     }
 
-    @PostMapping("/criar")
-    public String criar(@ModelAttribute Pedido pedido) {
-        pedidoRepository.save(pedido);
-        return "redirect:/pedidos/listar"; 
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @PutMapping("/{id}/status")
-    public String mudarStatus(@PathVariable Long id, @ModelAttribute StatusEnum status, Model model) {
-        Pedido pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
-        pedido.mudarStatus(status);
-        pedidoRepository.save(pedido);
-        return "redirect:/pedidos/listar";
+    public String getDescricao() {
+        return descricao;
     }
-}
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
