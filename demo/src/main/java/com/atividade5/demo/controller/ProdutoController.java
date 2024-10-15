@@ -1,6 +1,5 @@
 package com.atividade5.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,27 +11,28 @@ import com.atividade5.demo.repository.ProdutoRepository;
 import java.util.List;
 
 @Controller
-@RequestMapping("/produtos")
+@RequestMapping("/items")
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoRepository repositorioDeProdutos;
 
-    @GetMapping("/listar")
-    public String listarTodos(Model model) {
-        List<Produto> produtos = produtoRepository.findAll();
-        model.addAttribute("produtos", produtos);
-        return "produto-list"; //
+    @GetMapping("/all")
+    public String listarProdutos(Model model) {
+        List<Produto> listaDeProdutos = repositorioDeProdutos.findAll();
+        model.addAttribute("produtos", listaDeProdutos);
+        return "produto-lista"; 
     }
 
-    @GetMapping("/criar")
-    public String mostrarFormCriar() {
-        return "produto-cadastrar"; 
+    @GetMapping("/new")
+    public String mostrarFormularioCadastro() {
+        return "produto-cadastro"; 
     }
 
-    @PostMapping("/criar")
-    public String criar(@ModelAttribute Produto produto) {
-        produtoRepository.save(produto);
-        return "redirect:/produtos/listar"; 
+    @PostMapping("/new")
+    public String cadastrar(@ModelAttribute Produto novoProduto) {
+        repositorioDeProdutos.save(novoProduto);
+        return "redirect:/items/all"; 
     }
 }
+
