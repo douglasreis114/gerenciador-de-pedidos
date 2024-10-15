@@ -14,54 +14,50 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private String email;
-    private String telefone;
+    private String nomeCompleto;
+    private String enderecoEmail;
+    private String numeroTelefone;
 
     @Enumerated(EnumType.STRING)
-    private TipoUsuarioEnum tipoUsuario;
+    private TipoUsuario tipoDeUsuario;
 
     public Usuario() {
     }
 
-
-    public Long getId() {
+    public Long obterId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void definirId(Long id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String obterNome() {
+        return nomeCompleto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void definirNome(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
-    public String getEmail() {
-        return email;
+    public String obterEmail() {
+        return enderecoEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void definirEmail(String enderecoEmail) {
+        this.enderecoEmail = enderecoEmail;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String obterTelefone() {
+        return numeroTelefone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void definirTelefone(String numeroTelefone) {
+        this.numeroTelefone = numeroTelefone;
     }
 
-    public TipoUsuarioEnum getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuario obterTipoUsuario() {
+        return tipoDeUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuarioEnum tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-}
+    public void definirTipoUsuario(TipoUsuario
