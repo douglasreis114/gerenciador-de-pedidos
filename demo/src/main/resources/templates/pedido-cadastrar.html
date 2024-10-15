@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Pedido</title>
+</head>
+<body>
+    <h1>Criar Novo Pedido</h1>
+    <form id="criarPedidoForm">
+        <label for="produtoId">Produto ID:</label>
+        <input type="number" id="produtoId" name="produtoId" required>
+        <br>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" required>
+        <br>
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="PENDENTE">Pendente</option>
+            <option value="FINALIZADO">Finalizado</option>
+            <option value="CANCELADO">Cancelado</option>
+        </select>
+        <br>
+        <button type="submit">Criar Pedido</button>
+    </form>
+
+</body>
+</html>
