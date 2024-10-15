@@ -11,28 +11,26 @@ import com.atividade5.demo.repository.ProdutoRepository;
 import java.util.List;
 
 @Controller
-@RequestMapping("/items")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository repositorioDeProdutos;
+    private ProdutoRepository repositorio;
 
-    @GetMapping("/all")
-    public String listarProdutos(Model model) {
-        List<Produto> listaDeProdutos = repositorioDeProdutos.findAll();
-        model.addAttribute("produtos", listaDeProdutos);
-        return "produto-lista"; 
+    @GetMapping("/todos")
+    public String listar(Model model) {
+        List<Produto> produtos = repositorio.findAll();
+        model.addAttribute("lista", produtos);
+        return "lista-produtos"; 
     }
 
-    @GetMapping("/new")
-    public String mostrarFormularioCadastro() {
-        return "produto-cadastro"; 
+    @GetMapping("/novo")
+    public String formularioCadastro() {
+        return "cadastro-produto"; 
     }
 
-    @PostMapping("/new")
-    public String cadastrar(@ModelAttribute Produto novoProduto) {
-        repositorioDeProdutos.save(novoProduto);
-        return "redirect:/items/all"; 
-    }
-}
-
+    @PostMapping("/novo")
+    public String adicionar(@ModelAttribute Produto produto) {
+        repositorio.save(produto);
+        return "redirect:/produtos/todos"; 
+   
