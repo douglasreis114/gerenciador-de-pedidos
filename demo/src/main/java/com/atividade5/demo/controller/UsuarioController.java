@@ -11,27 +11,19 @@ import com.atividade5.demo.repository.UsuarioRepository;
 import java.util.List;
 
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping("/users")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioRepository repositorioDeUsuarios;
 
-    @GetMapping("/listar")
-    public String listarTodos(Model model) {
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        model.addAttribute("usuarios", usuarios);
-        return "usuario-list"; // Nome da página HTML (listarUsuarios.html)
+    @GetMapping("/all")
+    public String listarUsuarios(Model model) {
+        List<Usuario> listaDeUsuarios = repositorioDeUsuarios.findAll();
+        model.addAttribute("usuarios", listaDeUsuarios);
+        return "usuario-lista"; 
     }
 
-    @GetMapping("/criar")
-    public String mostrarFormCriar() {
-        return "usuario-cadastrar"; // Nome da página HTML (criarUsuario.html)
-    }
-
-    @PostMapping("/criar")
-    public String criar(@ModelAttribute Usuario usuario, Model model) {
-        usuarioRepository.save(usuario);
-        return "redirect:/usuarios/listar"; // Redireciona para a lista após a criação
-    }
-}
+    @GetMapping("/new")
+    public String mostrarFormularioCadastro() {
+        r
