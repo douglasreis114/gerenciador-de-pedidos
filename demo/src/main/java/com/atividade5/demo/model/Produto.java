@@ -1,7 +1,5 @@
 package com.atividade5.demo.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,41 +13,22 @@ public class Produto {
     private Long id;
 
     private String nome;
-    private int estoque;
-    private float preco;
+    private int quantidadeEstoque;
+    private float valor;
 
     public Produto() {
     }
 
-    public Long getId() {
+    public Long obterId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void definirId(Long id) {
         this.id = id;
     }
 
-    public String getNome() {
+    public String obterNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-}
+    public void de
